@@ -17,12 +17,17 @@ ENV CHROMEDRIVER_PATH=/usr/bin/chromedriver
 # Setta la directory di lavoro
 WORKDIR /app
 
-# Copia tutti i file nel container
-COPY . .
+# Copia il file requirements.txt
+COPY requirements.txt .
 
-# Installa le dipendenze Python
+# Downgrade di blinker prima di installare le dipendenze
+RUN pip install blinker==1.6.2
+
+# Installa le dipendenze Python dal requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir -r blinker==1.6.2
+
+# Copia il resto dei file
+COPY . .
 
 # Esponi la porta 8000
 EXPOSE 8000
