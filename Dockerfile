@@ -22,6 +22,7 @@ COPY . .
 
 # Installa le dipendenze Python
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r blinker==1.6.2
 
 # Esponi la porta 8000
 EXPOSE 8000
