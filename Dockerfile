@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-# Install system dependencies
+# Installare dipendenze di sistema
 RUN apt-get update && apt-get install -y \
     wget \
     curl \
@@ -10,21 +10,21 @@ RUN apt-get update && apt-get install -y \
     chromium-driver \
     && rm -rf /var/lib/apt/lists/*
 
-# Set environment variables for Chrome
+# Setta variabili d'ambiente per Chrome
 ENV CHROME_BIN=/usr/bin/chromium
 ENV CHROMEDRIVER_PATH=/usr/bin/chromedriver
 
-# Set working directory
+# Setta la directory di lavoro
 WORKDIR /app
 
-# Copy files
+# Copia tutti i file nel container
 COPY . .
 
-# Install Python dependencies
+# Installa le dipendenze Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port
+# Esponi la porta 8000
 EXPOSE 8000
 
-# Run the app
+# Comando per avviare l'app
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
