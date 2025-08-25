@@ -1,4 +1,6 @@
 fastapi
 uvicorn
-selenium
-seleniumwire
+selenium-wire
+webdriver-manager
+requests
+m3u8
